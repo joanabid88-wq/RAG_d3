@@ -152,11 +152,6 @@ if user_q:
     except Exception as e:
         st.error(f"LLm rewrite error:{e}")
         st.stop()
-
-with st.spinner("Thinking...."):
-    time.sleep(1)
-with st.spinner("Answering...."):
-    time.sleep(1)
     
     # 2) retrieve docs for the rewritten question
     docs=retriever.invoke(standalone_q)#<-- FIX:use.invoke(),not get_relevent_documents()
@@ -170,6 +165,7 @@ with st.spinner("Answering...."):
     # 4) Ask final question with stuffed context 
     qa_msgs=qa_prompt.format_messages(chat_history=history.messages,input=user_q,context=context_str)
     try:
+        with st.spinner(" Thinking and formulating an answer..."):
         answer=llm.invoke(qa_msgs).content
     except Exception as e:
         st.error (f"LLM answer error:{e}")
@@ -199,6 +195,7 @@ with st.spinner("Answering...."):
 
 
     
+
 
 
 
