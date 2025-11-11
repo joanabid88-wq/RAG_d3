@@ -153,6 +153,11 @@ if user_q:
         st.error(f"LLm rewrite error:{e}")
         st.stop()
 
+with st.spinner("Thinking...."):
+    time.sleep(1)
+with st.spinner("Answering...."):
+    time.sleep(1)
+    
     # 2) retrieve docs for the rewritten question
     docs=retriever.invoke(standalone_q)#<-- FIX:use.invoke(),not get_relevent_documents()
 
@@ -194,6 +199,7 @@ if user_q:
 
 
     
+
 
 
 
