@@ -139,8 +139,8 @@ def get_history(session_id:str):
       st.session_state.chathistory[session_id]=ChatMessageHistory()
     return st.session_state.chathistory[session_id]
 
-session_id=st.text_input("Session ID",value="default_session")
-user_q=st.chat_input("Ask a question based on your uploaded PDF...")
+session_id=st.text_input(" 💳 Session ID",value="default_session")
+user_q=st.chat_input(" 💭 Ask a question based on your uploaded PDF...")
 
 if user_q:
     history=get_history(session_id)
@@ -157,7 +157,7 @@ if user_q:
     docs=retriever.invoke(standalone_q)#<-- FIX:use.invoke(),not get_relevent_documents()
 
     if not docs:
-        st.chat_message("assistant").write("out of scope- not found in provided document. so plz ask Question according to the  upoaded document")
+        st.chat_message("assistant").write(" ⛔ out of scope- not found in provided document. so plz ask Question according to the  upoaded document")
 
     # 3) build context string 
     context_str=_join_docs(docs)
@@ -178,23 +178,24 @@ if user_q:
     history.add_ai_message(answer)
 
 
-    with st.expander("DEBUG: Rewritten Query & Retriever"):
+    with st.expander(" 🐞 DEBUG: Rewritten Query & Retriever"):
         st.write("**Rewritten (standalone) query**")
         st.code(standalone_q or "(empty)",language="text")
         st.write(f"**Retrieved {len(docs)} chunk(s).**")
         if docs:
-            with st.expander("Retrived Chunks"):
+            with st.expander(" 📋 Retrived Chunks"):
                 for i,doc in enumerate(docs,1):
                     st.markdown(f"**{i}.{doc.metadata.get('source_file','Unknown')}(p{doc.metadata.get('page','?')})**")
                     st.write(doc.page_content[:500]+("..."if len(doc.page_content)> 500 else ""))
                 else:
-                    st.warning("No matching info Found.Try a simpler Question or upload a related document")
+                    st.warning(" ⛔ No matching info Found.Try a simpler Question or upload a related document")
 
 
 
 
 
     
+
 
 
 
