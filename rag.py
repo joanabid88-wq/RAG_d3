@@ -51,7 +51,7 @@ embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-
 llm = ChatGroq(groq_api_key=api_key, model_name="openai/gpt-oss-20b")
 
 # ── Upload PDFs ────────────────────────────────────────────────────────────────
-uploaded_files = st.file_uploader(" Upload PDF files", type="pdf", accept_multiple_files=True)
+uploaded_files = st.file_uploader(" 📚 Upload PDF files", type="pdf", accept_multiple_files=True)
 
 if not uploaded_files:
     st.info("Please upload one or more PDFs to begin.")
@@ -195,6 +195,7 @@ if user_q:
 
 
     
+
 
 
 
