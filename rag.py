@@ -166,7 +166,7 @@ if user_q:
     qa_msgs=qa_prompt.format_messages(chat_history=history.messages,input=user_q,context=context_str)
     try:
         with st.spinner(" Thinking and formulating an answer..."):
-        answer=llm.invoke(qa_msgs).content
+           answer=llm.invoke(qa_msgs).content
     except Exception as e:
         st.error (f"LLM answer error:{e}")
         st.stop()
@@ -195,6 +195,7 @@ if user_q:
 
 
     
+
 
 
 
