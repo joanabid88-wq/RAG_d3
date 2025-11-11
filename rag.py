@@ -147,9 +147,9 @@ if user_q:
     
     # 1) REWRITE question with  history-> standalone search query 
     rewrite_msgs=contextualize_q_prompt.format_messages(chat_history=history.messages,input=user_q )
-     with st.spinner("Thinking...."):
+with st.spinner("Thinking...."):
     time.sleep(1)
-    with st.spinner("Answering...."):
+with st.spinner("Answering...."):
     time.sleep(1)
     try:
         standalone_q=llm.invoke(rewrite_msgs).content.strip()
@@ -198,4 +198,5 @@ if user_q:
 
 
     
+
 
